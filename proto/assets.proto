@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package Manufacturing;
+
+enum AssetType {
+    VOID = 0;
+    WHEELS = 1;
+    ENGINE = 2;
+    TRANSMISSIONS = 3;
+}
+
+enum OrgType {
+    ORG_TYPE_VOID = 0;
+    ORG_TYPE_PARTS_FACTORY = 1;
+    ORG_TYPE_CAR_FACTORY = 2;
+    ORG_TYPE_DEALER = 3;
+}
+
+message Account {
+    string address = 1;
+    string organizationName = 2;
+    string orgId = 3;
+    OrgType type = 4;
+    string publicKey = 5;
+    string accountNumber = 6;
+}
+
+message FactoryAsset {
+    string address = 1;
+    OrgType currentOwner = 2;
+    string assetId = 3;
+    AssetType type = 4;
+    string factoryAddress = 5;
+    string carAddress = 6;
+    string dealerAddress = 7;
+    string currentOwnerAddress = 8; 
+}
+
+message Car {
+    string address = 1;
+    OrgType currentOwner = 2;
+    string assetId = 3;
+    string wheelId = 4;
+    string engineId = 5;
+    string transmissionsId = 6;
+    string dealerAddress = 7;
+    string currentOwnerAddress = 8;
+}
+
+// Trail Structure
+message Trail {
+
+    string assetId =1;
+    string txnNumber=2;
+    string timestamp=3;
+    string signer=4;
+    string assignedTo =5;
+    OrgType signerOrgType = 6;
+    AssetType type = 7;
+    string address = 8;
+}    

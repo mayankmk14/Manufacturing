@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package Manufacturing;
+
+message Payload{
+    
+    enum Action {
+        ACCOUNT = 0;
+        CREATE_PARTS = 1;
+        OWNERSHIP = 2;
+        CREATE_CAR = 3;
+    }
+
+    enum AssetType {
+        VOID = 0;
+        WHEELS = 1;
+        ENGINE = 2;
+        TRANSMISSIONS = 3;
+        CAR = 4;
+    }
+
+    enum OrgType {
+        ORG_TYPE_VOID = 0;
+        ORG_TYPE_PARTS_FACTORY = 1;
+        ORG_TYPE_CAR_FACTORY = 2;
+        ORG_TYPE_DEALER = 3;
+    }
+
+
+    message Account {
+        string organizationName = 1;
+        string orgId = 2;
+        OrgType type = 3;
+        string accountNumber = 4;
+    }
+
+    message FactoryAsset {
+        string assetId = 1;
+        AssetType type = 2;
+    }
+
+    message ChangeOwnership {
+        string assetId = 1;
+        AssetType type = 2;
+        string newOwnerAddress = 3;
+        OrgType assignToType = 4; 
+    }
+
+    message CreateCar {
+        string assetId = 3;
+        string wheelId = 4;
+        string engineId = 5;
+        string transmissionsId = 6;
+        string dealerAddress = 7;
+    }
+
+    Action action = 1;
+    Account userEnrollment = 2;
+    FactoryAsset factoryAsset = 3;
+    ChangeOwnership changeOwnership = 4;
+    CreateCar car = 5;
+}
